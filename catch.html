@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .catch {
+            height: 100px;
+            width: 100px;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            background-color: rgb(97, 190, 236);
+            border-radius: 50%;
+            transition: 0.4s;
+        }
+
+        .catch p {
+            margin-top: 35%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" class="catch">
+        <p>Catch Me!!</p>
+    </div>
+    
+    <script>
+        var box = document.getElementById('box');
+        var top = false;
+        var move = box.addEventListener('mouseover', function (e) {
+
+            box.style.top = getRandom(0,(window.innerHeight - box.offsetHeight)) + "px";
+            box.style.left =getRandom(0, (window.innerWidth - box.offsetLeft)) + "px";
+
+        })
+
+        function getRandom(min, max){
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random()* (max - min)) + min;
+        }
+    </script>
+
+</body>
+
+</html>
