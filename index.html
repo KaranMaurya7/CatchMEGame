@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Catch Me Game</title>
     <style>
         .catch {
             height: 100px;
@@ -16,7 +16,7 @@
             background-color: rgb(97, 190, 236);
             /* background-color: rgb(39, 224, 61); */
             border-radius: 50%;
-            transition: 0.4s;
+            transition: all 0.4s  ease-in-out;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -37,12 +37,37 @@
             font-size: larger;
         }
 
+
         #details h3 {
             color: rgb(103, 40, 3);
         }
 
         #details p span {
             color: rgb(56, 160, 8);
+        }
+
+        #mode{
+            display: flex;
+            width: 25rem;
+            gap:2rem;
+            margin: auto;
+            justify-content: space-evenly;
+            margin-top: 1rem;
+        }
+        #mode div{
+            width: 8rem;
+            height: 3rem;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s all ease-in-out;
+            cursor: pointer;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #mode div:hover{
+            background-color: antiquewhite;
         }
     </style>
 </head>
@@ -54,16 +79,22 @@
     <div id="details">
         <h3>Rules</h3>
         <p>
-            Rules are very simple, you have to catch the ball and click on the "Catch Me!!" link. <br>
+            Rules are very simple, you have to catch the ball and click on the "Catch Me!!" link. By default the difficulty mode is hard choose your mode and Enjoy the game. <br>
             <span> <b>
                     Move your cursor on ball to start the game.</b>.
             </span>
         </p>
     </div>
+    <div id="mode">
+        <div onclick="mode('easy')">Easy</div>
+        <div onclick="mode('medium')">Medium</div>
+        <div onclick="mode('hard')">Hard</div>
+    </div>
 
     <script>
         var box = document.getElementById('box');
         var details = document.getElementById('details');
+        var modeOfGame = document.getElementById('mode');
         var move = false;
         var top = false;
 
@@ -78,16 +109,39 @@
         function getRandom(min, max) {
             if (move) {
                 details.style.display = 'none';
+                modeOfGame.style.display = 'none';
             }
             min = Math.ceil(min);
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min)) + min;
         }
 
+        function mode(text){
+            var box = document.getElementById('box');
+            if(text == 'easy'){
+                box.style.width = '300px';
+                box.style.height = '300px';
+                box.style.fontSize = 'xx-large';
+                console.log('easy');
+            }
+            else if(text == 'medium'){
+                box.style.width = '200px';
+                box.style.height = '200px';
+                box.style.fontSize = 'x-large';
+                console.log('medium');
+            }
+            else if(text == 'hard'){
+                box.style.width = '100px';
+                box.style.height = '100px';
+                
+                box.style.fontSize = 'medium';
+                console.log('hard');
+            }
+        }
         function gameOver() {
             var box = document.getElementById('box');
-            box.style.width = '200px';
-            box.innerHTML = "Congratulations! You Won";
+            box.style.width = '500px';
+            box.innerHTML = "Congratulations! You've Won";
             box.style.borderRadius = '10px';
             box.style.backgroundColor = "rgb(39, 224, 61)";
         }
